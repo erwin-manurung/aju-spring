@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="Spring_LDAP_core_2.0.2" systemlibrary="false">
+        <archive path="/AjuLibraries/spring-ldap-core-2.0.2/spring-ldap-core-2.0.2.RELEASE.jar"/>
+    </library>
+</eclipse-userlibraries>

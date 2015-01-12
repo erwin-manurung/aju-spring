@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="RMIIO-2.0.4" systemlibrary="false">
+        <archive path="/AjuLibraries/RMIIO-2.0.4/rmiio-2.0.4.jar"/>
+    </library>
+</eclipse-userlibraries>

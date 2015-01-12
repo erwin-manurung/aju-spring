@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd	
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<http pattern="/index.jsp*" security="none" />
+	<http pattern="/login.jsp*" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/js/**" security="none" />
+	<http pattern="/resources/**" security="none" />
+	
+	<http access-decision-manager-ref="accessDecisionManager">
+		<form-login login-page="/login.jsp"
+			always-use-default-target="true" default-target-url="/"
+			authentication-failure-url="/login.jsp?login_error=1" />
+			<access-denied-handler error-page="/403"/>
+		<logout />
+		<!-- TODO: Update this pattern as requirement -->
+		<intercept-url pattern="/**" access="application"/>
+		<remember-me user-service-ref="userDetailsService" />
+		<!-- 
+		<custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER" />
+		 -->
+		<custom-filter ref="ajuAccessFilter" after="FORM_LOGIN_FILTER"/>		
+		<session-management session-authentication-strategy-ref="sas"/>
+	</http>
+	
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder ref="passwordEncoder"></password-encoder>
+			<!-- 
+			<password-encoder hash="sha" base64="true">
+				<salt-source system-wide="salt"/>
+			</password-encoder>
+			-->
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder">
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.UnanimousBased">
+		<beans:property name="decisionVoters">
+			<beans:bean class="org.springframework.security.access.vote.RoleVoter">
+				<beans:property name="rolePrefix" value="" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	<!-- Concurrent login Strategy -->
+
+	<beans:bean id="concurrencyFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<beans:property name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="expiredUrl" value="/login.jsp?expired=true" />
+	</beans:bean>
+	<beans:bean id="sas" class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+	<beans:constructor-arg>
+		<beans:list>
+			<beans:bean
+				class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+				<beans:constructor-arg ref="sessionRegistry" />
+				<beans:property name="maximumSessions" value="1" />
+				<!-- FALSE: auto kick the old session, and continue with the new one-->
+				<!-- TRUE: reject new session to log in, preserve the old one-->
+				<beans:property name="exceptionIfMaximumExceeded" value="false" />
+			</beans:bean>
+			<beans:bean
+				class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy">
+			</beans:bean>
+			<beans:bean
+				class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+				<beans:constructor-arg ref="sessionRegistry" />
+			</beans:bean>
+		</beans:list>
+	</beans:constructor-arg>
+	</beans:bean>
+	
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+	<!-- Concurrent login Strategy -->
+	
+	<beans:bean id="ajuAccessFilter" class="com.aju.web.filter.AjuAccessFilter" />	
+</beans:beans>

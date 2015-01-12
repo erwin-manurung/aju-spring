@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:security="http://www.springframework.org/schema/security"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd	
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd	
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd	
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+		
+		<mvc:resources mapping="/resources/**" location="/resources/" />
+		<mvc:annotation-driven/>
+		<context:component-scan base-package="com.aju.web.controller"/>		
+		<security:global-method-security pre-post-annotations="enabled"></security:global-method-security>
+		
+		<!--  
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	-->
+	
+	<!-- i18n -->
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+		    <list>
+				<value>securitymessages</value>
+				<value>applicationmessages</value>
+		    </list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="fallbackToSystemLocale" value="false"/>
+  	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="in" />
+	</bean>
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+  	
+	<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+		<property name="interceptors">
+		   <list>
+			<ref bean="localeChangeInterceptor" />
+		   </list>
+		</property>
+	</bean>  	
+  	<!-- end of i18n -->
+<!-- 		
+		<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		    <property name="favorPathExtension" value="false" />
+		</bean>
+	 -->	
+	 	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	 	 	<property name="prefixJson" value="false"/>
+        	<property name="supportedMediaTypes" value="application/json"/>
+	 	</bean>
+		
+		<bean id="viewResolver" class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+			<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+		</bean>
+		
+		 
+		<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+			<property name="definitions">
+				<list><value>/WEB-INF/views/**/views.xml</value></list>
+			</property>
+		</bean>
+</beans>

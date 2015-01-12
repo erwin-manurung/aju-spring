@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="Spring_Framework_4.0.6" systemlibrary="false">
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-aop-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-aspects-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-beans-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-build-src-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-context-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-context-support-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-core-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-expression-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-framework-bom-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-instrument-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-instrument-tomcat-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-jdbc-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-jms-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-messaging-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-oxm-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-test-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-tx-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-web-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-webmvc-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-webmvc-portlet-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-websocket-4.0.6.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-data-jpa-1.6.2.RELEASE.jar"/>
+        <archive path="/AjuLibraries/spring-framework-4.0.6.release-lib/spring-data-commons-1.8.2.RELEASE.jar"/>
+    </library>
+</eclipse-userlibraries>

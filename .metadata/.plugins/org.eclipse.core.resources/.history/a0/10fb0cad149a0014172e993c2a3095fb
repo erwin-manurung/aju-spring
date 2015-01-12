@@ -1,0 +1,5 @@
+package com.aju.web.filter;
+
+public class GZipServletFilter {
+
+}
